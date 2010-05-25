@@ -2,127 +2,166 @@
 
 <html>
     <head>
-        <title>test.app</title>
-        
+        <title>Тестовое приложение</title>
+		<meta content="text/html; charset=utf-8" http-equiv="content-type">
     </head>
     <body id="">
         <script src="http://connect.rapira9.mail.ru/js/loader.js" type="text/javascript" charset="utf-8"></script>
-        <button id="payment" type="button" onclick="payment()">
-            payment dialog
-        </button>
-        <button id="inviteFrineds" type="button" onclick="invite()">
-            invite frineds
-        </button>
-		<button id="reviewApp" type="button" onclick="review()">
-            review app
-        </button>
+		<div id="sandbox">
+	        <button id="payment" type="button" onclick="payment()">
+	            payment dialog
+	        </button>
+	        <button id="inviteFrineds" type="button" onclick="invite()">
+	            invite frineds
+	        </button>
+			<button id="reviewApp" type="button" onclick="review()">
+	            review app
+	        </button>
 
-		<button id="widget" type="button" onclick="permission('widget')">
-            widget
-        </button>
-		<button id="stream" type="button" onclick="stream()">
-            stream
-        </button>
-		<button id="guestbook" type="button" onclick="guestbook()">
-            guestbook
-        </button>
-		<button id="album" type="button" onclick="createAlbum()">
-            album
-        </button>
-		<button id="photo" type="button" onclick="upload()" style="display: none">
-            upload photo
-        </button>
-		<br/>
-		<textarea id="console" style="height: 500px; width: 100%; display: block;"></textarea>		
+			<button id="widget" type="button" onclick="permission('widget')">
+	            widget
+	        </button>
+			<button id="stream" type="button" onclick="stream()">
+	            stream
+	        </button>
+			<button id="guestbook" type="button" onclick="guestbook()">
+	            guestbook
+	        </button>
+			<button id="album" type="button" onclick="createAlbum()">
+	            album
+	        </button>
+			<button id="photo" type="button" onclick="upload()" style="display: none">
+	            upload photo
+	        </button>
+			<br/>
+			<textarea id="console" style="height: 500px; width: 100%; display: block;"></textarea>
+		</div>		
         <script type="text/javascript" charset="utf-8">
+            if(typeof window.console === 'undefined'){
+                window.console = {
+                    log: function(d){
+                        cl('console log: ' + d);
+                    }
+                };
+            }
+
             function $(d){
                 return document.getElementById(d) || false;
             }
-			function cl(d){
-				$('console').innerHTML += d + '\n';
-			}
-			var user = {}, aid = null;
-            mailru.loader.require('api', function() {
+            function cl(d){
+                $('console').innerHTML += d + '\n';
+            }
+            var user = {}, aid = null, sandbox = document.getElementById('sandbox');
 
-              mailru.app.init('148480a53d12c753d8f8fca56e7f48d6');
-			  mailru.app.users.getInfo(function(result){
-			  	user = result[0];
-			  });
-			  mailru.events.listen(mailru.app.events.friendsInvitation, function(d){cl(collectData(d))});
-              mailru.events.listen(mailru.app.events.paymentDialogStatus, function(d){cl(collectData(d))});
-              mailru.events.listen(mailru.app.events.incomingPayment, function(d){cl(collectData(d))});
-			  mailru.events.listen(mailru.app.events.applicationReviewStatus, function(d){cl(collectData(d))});
-			  mailru.events.listen(mailru.app.events.applicationSettingsStatus, function(d){cl(collectData(d))});
-			  mailru.events.listen(mailru.app.events.permissionsChange, function(d){cl(collectData(d))});
-			  mailru.events.listen(mailru.app.events.streamPublish, function(d){cl(collectData(d))});
-			  mailru.events.listen(mailru.app.events.guestbookPublish, function(d){cl(collectData(d))});
-			  mailru.events.listen(mailru.app.events.permissionDialogStatus, function(d){cl(collectData(d))});
+            mailru.loader.require('api', function() {
+				//делаем инициализацию приложения
+                mailru.app.init('cfe0b07b0762f250c1f640f8bbf259c3');
+
+				//проверяем, установлено ли приложение у пользователя
+                if(mailru.session.is_app_user != 1){
+                    sandbox.style.display = 'none';
+                    alert('Приложение не установлено')
+                    mailru.app.users.requireInstallation();
+                }	
+				
+				//получаем информацию о пользователе и сохраняем в глобаленой переменной user
+                mailru.app.users.getInfo(function(result){
+                    user = result[0];
+                });
+                
+				//блок подписки на события
+                mailru.events.listen(mailru.app.events.friendsInvitation, function(d){
+                    cl(collectData(d))
+                });
+                mailru.events.listen(mailru.app.events.paymentDialogStatus, function(d){
+                    cl(collectData(d))
+                });
+                mailru.events.listen(mailru.app.events.incomingPayment, function(d){
+                    cl(collectData(d))
+                });
+                mailru.events.listen(mailru.app.events.applicationReviewStatus, function(d){
+                    cl(collectData(d))
+                });
+                mailru.events.listen(mailru.app.events.applicationSettingsStatus, function(d){
+                    cl(collectData(d))
+                });
+                mailru.events.listen(mailru.app.events.permissionsChange, function(d){
+                    cl(collectData(d))
+                });
+                mailru.events.listen(mailru.app.events.streamPublish, function(d){
+                    cl(collectData(d))
+                });
+                mailru.events.listen(mailru.app.events.guestbookPublish, function(d){
+                    cl(collectData(d))
+                });
+                mailru.events.listen(mailru.app.events.permissionDialogStatus, function(d){
+                    cl(collectData(d))
+                });
             });
-			
-			
-            
+
             function collectData(d){
                 var o = '';
                 for (var p in d){
                     if(d.hasOwnProperty(p))
-						if(typeof d[p] === 'object'){
-							o += collectData(d[p]);
-						}
-						else
-                        	o += p + '->' + d[p] + '\n';
-                };
+                        if(typeof d[p] === 'object'){
+                            o += collectData(d[p]);
+                        }
+                        else{
+                            o += p + '->' + d[p] + '\n';
+                        }
+                    };
                 return o;
             }
-            
+			
+			//блок функций вызова api-методов
             function payment(){
-                  //mailru.app.payments.showDialog({service_id: 1, service_name: 'название', sms_price: 1, other_price: 2000});
-                  mailru.app.payments.showDialog({service_id: 1, service_name: 'РЅР°Р·РІР°РЅРёРµ', sms_price: 1, other_price: 2000});
-                  return false;
-			}
-			
-			function invite(){
-				mailru.app.friends.invite({name: 'test.app invite', logo: ''});
-				return false;
-			}
-			
-			function review(){
-				mailru.app.users.review();
-				return false;
-			}
-			
-			function permission(type){
-				mailru.app.users.settings();
-				return false;
-			}			
-			
-			function permission(type){
-				mailru.common.users.requirePermissions(type);
-				return false;
-			}
-			
-			function guestbook(){
-				mailru.common.guestbook.publish({text: '��������� ������ � ��������', uid: user.uid});
-				return false;
-			}
-			
-			function stream(){
-				mailru.common.stream.publish({text: '��������� ������ � ��� ������'});
-				return false;
-			}
-			
-			function createAlbum(){
-				mailru.common.photos.createAlbum({name: '�������� ������'});
-				mailru.events.listen(mailru.common.events.createAlbum, function(result){
-					$('photo').style.display = 'block';
-					aid = result.aid;
-				})
-				return false;
-			}
-             
-			function upload(){
-				mailru.common.photos.upload({aid: aid, img: 'http://content.foto.mail.ru/corp/novikov/_connect/i-558.jpg'});
-				return false;
-			}
+                mailru.app.payments.showDialog({service_id: 1, service_name: 'вилы', sms_price: 1, other_price: 2000});
+                return false;
+            }
+
+            function invite(){
+                mailru.app.friends.invite({name: 'test.app invite', logo: ''});
+                return false;
+            }
+
+            function review(){
+                mailru.app.users.review();
+                return false;
+            }
+
+            function permission(type){
+                mailru.app.users.settings();
+                return false;
+            }			
+
+            function permission(type){
+                mailru.common.users.requirePermissions(type);
+                return false;
+            }
+
+            function guestbook(){
+                mailru.common.guestbook.publish({text: 'Тестовая запись в гостевую', uid: user.uid});
+                return false;
+            }
+
+            function stream(){
+                mailru.common.stream.publish({text: 'Тестовая запись в Что нового'});
+                return false;
+            }
+
+            function createAlbum(){
+                mailru.common.photos.createAlbum({name: 'Тестовый альбом'});
+                mailru.events.listen(mailru.common.events.createAlbum, function(result){
+                    $('photo').style.display = 'block';
+                    aid = result.aid;
+                })
+                return false;
+            }
+
+            function upload(){
+                mailru.common.photos.upload({aid: aid, img: 'http://content.foto.mail.ru/corp/novikov/_connect/i-558.jpg'});
+                return false;
+            }
         </script>  
     </body>
 </html>
