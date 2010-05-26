@@ -30,12 +30,13 @@
 			<button id="album" type="button" onclick="createAlbum()">
 	            album
 	        </button>
+			<select id="albums-select"></select>
 			<button id="photo" type="button" onclick="upload()" style="display: none">
 	            upload photo
 	        </button>
-			<br/>
-			<textarea id="console" style="height: 500px; width: 100%; display: block;"></textarea>
-		</div>		
+		</div>
+		<textarea id="console" style="height: 500px; width: 100%; display: block;"></textarea>
+		
         <script type="text/javascript" charset="utf-8">
             if(typeof window.console === 'undefined'){
                 window.console = {
@@ -51,7 +52,7 @@
             function cl(d){
                 $('console').innerHTML += d + '\n';
             }
-            var user = {}, aid = null, sandbox = document.getElementById('sandbox');
+            var user = {}, albums = null, aid = null, sandbox = document.getElementById('sandbox');
 
             mailru.loader.require('api', function() {
 				//делаем инициализацию приложения
@@ -68,6 +69,18 @@
                 mailru.app.users.getInfo(function(result){
                     user = result[0];
                 });
+
+				mailru.app.photos.getAlbums(function(result){
+					albums = result;
+					var albumsSelect = $('albums-select');
+					for(var i = 0; i < albums.length; i++){
+						with(albumsSelect.appendChild(document.createElement('option'))){
+							value = albums[i].aid;
+							innerHTML = albums[i].aid;
+						}
+					};
+					albumsSelect.style.display = 'inline';
+				}, user.uid);
                 
 				//блок подписки на события
                 mailru.events.listen(mailru.app.events.friendsInvitation, function(d){
@@ -150,7 +163,7 @@
             }
 
             function createAlbum(){
-                mailru.common.photos.createAlbum({wrong_name: 'Тестовый альбом'});
+                mailru.common.photos.createAlbum({name: 'Тестовый альбом' });
                 mailru.events.listen(mailru.common.events.createAlbum, function(result){
                     $('photo').style.display = 'block';
                     aid = result.aid;
@@ -159,7 +172,7 @@
             }
 
             function upload(){
-                mailru.common.photos.upload({aid: aid, img: 'http://content.foto.mail.ru/corp/novikov/_connect/i-558.jpg'});
+                mailru.common.photos.upload({aid: $('album-select').value, img: 'http://content.foto.mail.ru/corp/novikov/_connect/i-558.jpg'});
                 return false;
             }
         </script>  
