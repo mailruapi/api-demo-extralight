@@ -150,7 +150,7 @@
             }
 
             function createAlbum(){
-                mailru.common.photos.createAlbum({/*name: 'Тестовый альбом'*/});
+                mailru.common.photos.createAlbum({wrong_name: 'Тестовый альбом'});
                 mailru.events.listen(mailru.common.events.createAlbum, function(result){
                     $('photo').style.display = 'block';
                     aid = result.aid;
