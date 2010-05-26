@@ -153,12 +153,29 @@
             }
 
             function guestbook(){
-                mailru.common.guestbook.publish({text: 'Тестовая запись в гостевую', uid: user.uid});
+                mailru.common.guestbook.publish({
+					'title': 'Заголовок',
+					'text': 'Текст',
+                    'imgURL': 'http://bitman.me/mailru/demo/img/stream_pic.jpeg',
+                    'actionLinks': [
+	                    {'text': 'узнать тоже', 'href': document.location.host + '#link1'},
+	                    {'text': 'еще ссылка', 'href': document.location.host + '?1=2#link2'}
+                    ],
+					uid: user.uid
+				});
                 return false;
             }
 
             function stream(){
-                mailru.common.stream.publish({text: 'Тестовая запись в Что нового'});
+                mailru.common.stream.publish({
+					'title': 'Заголовок',
+					'text': 'Текст',
+                    'imgURL': 'http://bitman.me/mailru/demo/img/stream_pic.jpeg',
+                    'actionLinks': [
+	                    {'text': 'узнать тоже', 'href': document.location.host + '#link1'},
+	                    {'text': 'еще ссылка', 'href': document.location.host + '?1=2#link2'}
+                    ]
+				});
                 return false;
             }
 
