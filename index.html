@@ -110,6 +110,9 @@
                 mailru.events.listen(mailru.app.events.permissionDialogStatus, function(d){
                     cl(collectData(d))
                 });
+                mailru.events.listen(mailru.app.events.upload, function(d){
+                    cl(collectData(d))
+                });
             });
 
             function collectData(d){
