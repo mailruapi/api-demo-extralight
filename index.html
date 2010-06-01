@@ -61,7 +61,6 @@
 				//проверяем, установлено ли приложение у пользователя
                 if(mailru.session.is_app_user != 1){
                     sandbox.style.display = 'none';
-                    alert('Приложение не установлено')
                     mailru.app.users.requireInstallation();
                 }	
 				
