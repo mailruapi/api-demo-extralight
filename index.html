@@ -73,9 +73,11 @@
             var user = {}, albums = null, aid = null, sandbox = document.getElementById('sandbox');
 
             mailru.loader.require('api', function() {
+				cl('Кросс-доменный транспорт ' + mailru.intercomType)
+				
 				//делаем инициализацию приложения
                 mailru.app.init('cfe0b07b0762f250c1f640f8bbf259c3');
-
+				
 				//проверяем, установлено ли приложение у пользователя
                 if(mailru.session.is_app_user != 1){
                     sandbox.style.display = 'none';
