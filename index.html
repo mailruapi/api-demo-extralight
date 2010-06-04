@@ -17,6 +17,7 @@
 	            Написать отзыв
 	        </button>
 			<br/>
+			<br/>			
 			<button id="widget" type="button" onclick="permission('widget')">
 	            Разместить виджет в профиле
 	        </button>
@@ -27,6 +28,7 @@
 	            Добавить запись в Гостевую книгку
 	        </button>
 			<br/>
+			<br/>			
 			<button id="album" type="button" onclick="createAlbum()">
 	            Создать альбом
 	        </button>
@@ -188,7 +190,6 @@
             function createAlbum(){
                 mailru.common.photos.createAlbum({name: 'Тестовый альбом' });
                 mailru.events.listen(mailru.common.events.createAlbum, function(result){
-                    $('photo').style.display = 'block';
                     aid = result.aid;
 					fillAlbumsSelect();
                 })
