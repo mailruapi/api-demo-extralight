@@ -8,30 +8,31 @@
     <body id="wrp">
 		<div id="sandbox">
 	        <button id="payment" type="button" onclick="payment()">
-	            payment dialog
+				Оплатить
 	        </button>
 	        <button id="inviteFrineds" type="button" onclick="invite()">
-	            invite frineds
+	            Пригласить друзей
 	        </button>
 			<button id="reviewApp" type="button" onclick="review()">
-	            review app
+	            Написать отзыв
 	        </button>
-
+			<br/>
 			<button id="widget" type="button" onclick="permission('widget')">
-	            widget
+	            Разместить виджет в профиле
 	        </button>
 			<button id="stream" type="button" onclick="stream()">
-	            stream
+	            Добавить запись в «Что нового»
 	        </button>
 			<button id="guestbook" type="button" onclick="guestbook()">
-	            guestbook
+	            Добавить запись в Гостевую книгку
 	        </button>
+			<br/>
 			<button id="album" type="button" onclick="createAlbum()">
-	            album
+	            Создать альбом
 	        </button>
 			<select id="albums-select"></select>
 			<button id="photo" type="button" onclick="upload()">
-	            upload photo
+	            Загрузить фото
 	        </button>
 		</div>
 		<textarea id="console" style="height: 500px; width: 100%; display: block;"></textarea>
@@ -51,6 +52,22 @@
             function cl(d){
                 $('console').innerHTML += d + '\n';
             }
+			function fillAlbumsSelect(){
+				mailru.app.photos.getAlbums(function(result){
+					albums = result;
+					var albumsSelect = $('albums-select');
+					albumsSelect.innerHTML = null;
+					for(var i = 0; i < albums.length; i++){
+						with(albumsSelect.appendChild(document.createElement('option'))){
+							value = albums[i].aid;
+							innerHTML = albums[i].aid;
+						}
+					};
+					
+					albumsSelect.style.display = 'inline';
+				}, user.uid);
+			}
+			
             var user = {}, albums = null, aid = null, sandbox = document.getElementById('sandbox');
 
             mailru.loader.require('api', function() {
@@ -66,19 +83,11 @@
 				//получаем информацию о пользователе и сохраняем в глобаленой переменной user
                 mailru.app.users.getInfo(function(result){
                     user = result[0];
+					fillAlbumsSelect();
                 });
-
-				mailru.app.photos.getAlbums(function(result){
-					albums = result;
-					var albumsSelect = $('albums-select');
-					for(var i = 0; i < albums.length; i++){
-						with(albumsSelect.appendChild(document.createElement('option'))){
-							value = albums[i].aid;
-							innerHTML = albums[i].aid;
-						}
-					};
-					albumsSelect.style.display = 'inline';
-				}, user.uid);
+				
+				
+				
                 
 				//блок подписки на события
                 mailru.events.listen(mailru.app.events.friendsInvitation, function(d){
@@ -181,6 +190,7 @@
                 mailru.events.listen(mailru.common.events.createAlbum, function(result){
                     $('photo').style.display = 'block';
                     aid = result.aid;
+					fillAlbumsSelect();
                 })
                 return false;
             }
