@@ -71,7 +71,6 @@
 			}
 			
             var user = {}, friends = {}, albums = null, aid = null, sandbox = document.getElementById('sandbox');
-			window.onload = function(){	
 	            mailru.loader.require('api', function() {
 					cl('Кросс-доменный транспорт ' + mailru.intercomType)
 				
@@ -123,7 +122,7 @@
 	                    cl(collectData(d))
 	                });
 	            });
-			}
+
             function collectData(d){
                 var o = '';
                 for (var p in d){
