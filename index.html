@@ -82,6 +82,7 @@
 	                if(mailru.session.is_app_user != 1){
 	                    sandbox.style.display = 'none';
 	                    mailru.app.users.requireInstallation(['stream', 'widget']);
+						return false;
 	                }	
 				
 					//получаем информацию о пользователе и сохраняем в глобаленой переменной user
