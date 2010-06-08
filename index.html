@@ -70,7 +70,7 @@
 				}, user.uid);
 			}
 			
-            var user = {}, albums = null, aid = null, sandbox = document.getElementById('sandbox');
+            var user = {}, friends = {}, albums = null, aid = null, sandbox = document.getElementById('sandbox');
 
             mailru.loader.require('api', function() {
 				cl('Кросс-доменный транспорт ' + mailru.intercomType)
@@ -81,7 +81,7 @@
 				//проверяем, установлено ли приложение у пользователя
                 if(mailru.session.is_app_user != 1){
                     sandbox.style.display = 'none';
-                    mailru.app.users.requireInstallation(['news', 'widget']);
+                    mailru.app.users.requireInstallation(['stream', 'widget']);
                 }	
 				
 				//получаем информацию о пользователе и сохраняем в глобаленой переменной user
@@ -89,9 +89,6 @@
                     user = result[0];
 					fillAlbumsSelect();
                 });
-				
-				
-				
                 
 				//блок подписки на события
                 mailru.events.listen(mailru.app.events.friendsInvitation, function(d){
@@ -155,11 +152,6 @@
                 mailru.app.users.review();
                 return false;
             }
-
-            function permission(type){
-                mailru.app.users.settings();
-                return false;
-            }			
 
             function permission(type){
                 mailru.common.users.requirePermissions(type);
