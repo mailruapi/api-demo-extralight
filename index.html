@@ -176,7 +176,10 @@
                 mailru.common.stream.publish({
 					'title': 'Заголовок',
 					'text': 'Текст',
-                    'img_url': 'http://bitman.me/mailru/demo/img/stream_pic.jpeg'
+                    'img_url': 'http://bitman.me/mailru/demo/img/stream_pic.jpeg',
+					'action_link': [
+						{'text': 'ссылка', 'href': document.location.host + '#link1'}
+					]
 				});
                 return false;
             }
