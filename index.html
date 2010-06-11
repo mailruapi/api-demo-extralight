@@ -80,7 +80,7 @@
 					//проверяем, установлено ли приложение у пользователя
 	                if(mailru.session.is_app_user != 1){
 	                    sandbox.style.display = 'none';
-	                    mailru.app.users.requireInstallation(['stream', 'widget']);
+	                    mailru.app.users.requireInstallation(['widget']);
 						return false;
 	                }	
 				
