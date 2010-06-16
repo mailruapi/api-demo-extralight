@@ -36,6 +36,11 @@
 			<button id="photo" type="button" onclick="upload()">
 	            Загрузить фото
 	        </button>
+	        <br/>
+	        <br/>
+	        <button id="setIframeHeight" type="button" onclick="setIframeHeight()">
+	            Установить высоту 1000
+	        </button>
 		</div>
 		<textarea id="console" style="height: 500px; width: 100%; display: block;"></textarea>
 		<script src="http://connect.rapira9.mail.ru/js/loader.js" type="text/javascript" charset="utf-8"></script>
@@ -194,6 +199,11 @@
 
             function upload(){
                 mailru.common.photos.upload({aid: $('albums-select').value, img: 'http://content.foto.mail.ru/corp/novikov/_connect/i-558.jpg'});
+                return false;
+            }
+            
+            function setIframeHeight(){
+                mailru.app.utils.setIframeHeight(1000);
                 return false;
             }
 
