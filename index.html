@@ -38,8 +38,11 @@
 	        </button>
 	        <br/>
 	        <br/>
-	        <button id="setIframeHeight" type="button" onclick="setIframeHeight()">
-	            Установить высоту 1000
+	        <button id="setIframeHeight5000" type="button" onclick="setIframeHeight(5000)">
+	            Установить высоту 5000
+	        </button>
+	        <button id="setIframeHeight500" type="button" onclick="setIframeHeight(500)">
+	            Установить высоту 500
 	        </button>
 	        <br/>
 	        <br/>
@@ -214,8 +217,8 @@
                 return false;
             }
             
-            function setIframeHeight(){
-                mailru.app.utils.setIframeHeight(1000);
+            function setIframeHeight(height){
+                mailru.app.utils.setIframeHeight(height);
                 return false;
             }
             
