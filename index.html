@@ -41,6 +41,14 @@
 	        <button id="setIframeHeight" type="button" onclick="setIframeHeight()">
 	            Установить высоту 1000
 	        </button>
+	        <br/>
+	        <button id="readHash" type="button" onclick="readHash()">
+	            Прочесть hash
+	        </button>
+	        <button id="writeHash" type="button" onclick="writeHash()">
+	            Записать в hash
+	        </button>
+	        <input id="writeHashInput" />
 		</div>
 		<textarea id="console" style="height: 500px; width: 100%; display: block;"></textarea>
 		<script src="http://connect.mail.ru/js/loader.js" type="text/javascript" charset="utf-8"></script>
@@ -126,6 +134,9 @@
 	                mailru.events.listen(mailru.app.events.upload, function(d){
 	                    cl(collectData(d))
 	                });
+	                mailru.events.listen(mailru.app.events.readHash, function(d){
+	                    cl(collectData(d))
+	                });
 	            });
 
             function collectData(d){
@@ -206,7 +217,15 @@
                 mailru.app.utils.setIframeHeight(1000);
                 return false;
             }
-
+            
+            function readHash(){
+                mailru.app.hash.read();
+                return false;
+            }
+            function writeHash(){
+                mailru.app.hash.write(document.getElementById('writeHashInput').value);
+                return false;
+            }
         </script>  
     </body>
 </html>
