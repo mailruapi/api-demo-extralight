@@ -218,16 +218,16 @@
             }
             
             function setIframeHeight(height){
-                mailru.app.utils.setIframeHeight(height);
+                mailru.app.utils.setHeight(height);
                 return false;
             }
             
             function readHash(){
-                mailru.app.hash.read();
+                mailru.app.utils.hash.read();
                 return false;
             }
             function writeHash(){
-                mailru.app.hash.write(document.getElementById('writeHashInput').value);
+                mailru.app.utils.hash.write(document.getElementById('writeHashInput').value);
                 return false;
             }
         </script>  
