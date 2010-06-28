@@ -106,6 +106,12 @@
 	                    user = result[0];
 						fillAlbumsSelect();
 	                });
+	                
+	                mailru.connect.friends.getFiltered(function(result) {
+	                    if(window.console)
+	                        console.log(result)
+	                });
+	                
                 
 					//блок подписки на события
 	                mailru.events.listen(mailru.app.events.friendsInvitation, function(d){
