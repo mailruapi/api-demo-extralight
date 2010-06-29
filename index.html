@@ -180,9 +180,10 @@
 
             function guestbook(){
                 mailru.common.guestbook.publish({
-                      'title': 'заголовок записи, будет написан жирным шрифтом',
-                      'text': 'основной текст вашей записи, никак не обрабатывается (ссылки не выделяются)', // единственное обязательное поле
-                      'img_url': 'http://bitman.me/mailru/demo/img/stream_pic.jpeg', // картинка, которая будет отображаться в записи
+                        uid: user.uid,
+                      title: 'заголовок записи, будет написан жирным шрифтом',
+                      text: 'основной текст вашей записи, никак не обрабатывается (ссылки не выделяются)', 
+                      img_url: 'http://bitman.me/mailru/demo/img/stream_pic.jpeg', 
                       action_links: [
                         {'text': 'заголовок ссылки 1', 'href': 'http://example.com/test1'},
                         {'text': 'заголовок ссылки 2', 'href': 'http://example.com/test2'} 
