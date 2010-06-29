@@ -204,7 +204,7 @@
             }
 
             function createAlbum(){
-                mailru.common.photos.createAlbum({name: 'Тестовый альбом' });
+                mailru.common.photos.createAlbum({ name: 'Album Name' })
                 mailru.events.listen(mailru.common.events.createAlbum, function(result){
                     aid = result.aid;
 					fillAlbumsSelect();
@@ -213,7 +213,11 @@
             }
 
             function upload(){
-                mailru.common.photos.upload({aid: $('albums-select').value, img: 'http://content.foto.mail.ru/corp/novikov/_connect/i-558.jpg'});
+                mailru.common.photos.upload({aid: $('albums-select').value, url: 'http://content.foto.mail.ru/corp/novikov/_connect/i-558.jpg'});
+                mailru.events.listen(mailru.common.events.upload, function(result){
+                  result.status
+                  alert(result.pid);
+                })
                 return false;
             }
             
