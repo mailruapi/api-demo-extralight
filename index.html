@@ -180,13 +180,13 @@
 
             function guestbook(){
                 mailru.common.guestbook.publish({
-					'title': 'Заголовок',
-					'text': 'Текст',
-                    'img_url': 'http://img-fotki.yandex.ru/get/3508/flashtuchka.19d/0_30dbb_b9d0308b_XL.jpg',
-                    'action_links': [
-	                    {'text': 'узнать тоже', 'href': document.location.host + '#link1'},
-	                    {'text': 'еще ссылка', 'href': document.location.host + '?1=2#link2'}
-                    ]
+                      'title': 'заголовок записи, будет написан жирным шрифтом',
+                      'text': 'основной текст вашей записи, никак не обрабатывается (ссылки не выделяются)', // единственное обязательное поле
+                      'img_url': 'http://bitman.me/mailru/demo/img/stream_pic.jpeg', // картинка, которая будет отображаться в записи
+                      action_links: [
+                        {'text': 'заголовок ссылки 1', 'href': 'http://example.com/test1'},
+                        {'text': 'заголовок ссылки 2', 'href': 'http://example.com/test2'} 
+                      ]
 				});
                 return false;
             }
