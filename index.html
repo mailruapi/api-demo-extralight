@@ -55,7 +55,7 @@
 	        <input id="writeHashInput" />
 		</div>
 		<textarea id="console" style="height: 500px; width: 100%; display: block;"></textarea>
-		<script src="http://connect.rapira9.mail.ru/js/loader.js" type="text/javascript" charset="utf-8"></script>
+		<script src="http://connect.mail.ru/js/loader.js" type="text/javascript" charset="utf-8"></script>
         <script type="text/javascript" charset="utf-8">
             if(typeof window.console === 'undefined'){
                 window.console = {
@@ -191,8 +191,8 @@
             function stream(){
                 mailru.common.stream.publish({
                   'title': 'заголовок записи, будет написан жирным шрифтом',
-                  'text': 'основной текст вашей записи, никак не обрабатывается (ссылки не выделяются)', // единственное обязательное поле
-                  'img_url': 'http://exmaple.com/img.gif', // картинка, которая будет отображаться в записи
+                  'text': 'основной текст вашей записи, никак не обрабатывается (ссылки не выделяются)',
+                  'img_url': 'http://exmaple.com/img.gif', 
                   action_links: [
                     {'text': 'заголовок ссылки 1', 'href': 'http://example.com/test1'},
                     {'text': 'заголовок ссылки 2', 'href': 'http://example.com/test2'} 
