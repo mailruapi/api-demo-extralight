@@ -211,7 +211,7 @@
             }
 
             function upload(){
-                mailru.common.photos.upload({aid: $('albums-select').value, url: 'http://content.foto.mail.ru/corp/novikov/_connect/i-558.jpg'});
+                mailru.common.photos.upload({aid: $('albums-select').value, url: 'http://upload.wikimedia.org/wikipedia/commons/8/8a/Hubble_sequence_photo.png'});
                 mailru.events.listen(mailru.common.events.upload, function(result){
                   result.status
                   alert(result.pid);
