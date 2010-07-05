@@ -53,6 +53,18 @@
 	            Записать в hash
 	        </button>
 	        <input id="writeHashInput" />
+	        <br/>
+	        <br/>
+	        <button id="scrollTop" type="button" onclick="scrollTo('top')">
+	            Скролл в начало приложения
+	        </button>
+	        <button id="scrollTop" type="button" onclick="scrollTo('bottom')">
+	            Скролл в конец приложения
+	        </button>
+	        <button id="scrollTop" type="button" onclick="scrollTo(330)">
+	            Скролл на 330 пикселей
+	        </button>
+	        
 		</div>
 		<textarea id="console" style="height: 500px; width: 100%; display: block;"></textarea>
 		<script src="http://api.connect.rapira9.mail.ru/js/loader.js" type="text/javascript" charset="utf-8"></script>
@@ -234,6 +246,16 @@
             function writeHash(){
                 mailru.app.utils.hash.write(document.getElementById('writeHashInput').value);
                 return false;
+            }
+            
+            function scrollTo(pos){
+                if(typeof pos === 'string'){
+                    switch(pos){
+                        case 'top' : pos  = 0; break;
+                        case 'bottom' : pos  = document.clientHeight; break;                        
+                    }
+                }
+                mailru.app.utils.scrollTo(pos);
             }
         </script>  
     </body>
