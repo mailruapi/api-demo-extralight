@@ -55,7 +55,7 @@
 	        <input id="writeHashInput" />
 		</div>
 		<textarea id="console" style="height: 500px; width: 100%; display: block;"></textarea>
-		<script src="http://connect.mail.ru/js/loader.js" type="text/javascript" charset="utf-8"></script>
+		<script src="http://api.connect.rapira9.mail.ru/js/loader.js" type="text/javascript" charset="utf-8"></script>
         <script type="text/javascript" charset="utf-8">
             if(typeof window.console === 'undefined'){
                 window.console = {
@@ -159,7 +159,10 @@
 			
 			//блок функций вызова api-методов
             function payment(){
-                mailru.app.payments.showDialog({service_id: 1, service_name: 'вилы', other_price: 2000});
+                mailru.app.payments.showDialog({service_id: 1, service_name: 'вилы', other_price: 2000
+
+
+});
                 return false;
             }
 
