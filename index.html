@@ -198,7 +198,10 @@
                         uid: user.uid,
                       title: 'заголовок записи, будет написан жирным шрифтом',
                       text: 'основной текст вашей записи, никак не обрабатывается (ссылки не выделяются)', 
-                      img_url: 'http://bitman.me/mailru/demo/img/stream_pic.jpeg'
+                      img_url: 'http://bitman.me/mailru/demo/img/stream_pic.jpeg',
+                      action_links: [
+                          {'text': 'Запостил UID', 'href': 'uid=' + user.uid},
+                        ]
 				});
                 return false;
             }
