@@ -7,6 +7,10 @@
     </head>
     <body id="wrp">
 		<div id="sandbox">
+		    <button id="install" type="button" onclick="install()">
+				Установить
+	        </button>
+	        <br/><br/><br/><br/>
 	        <button id="payment" type="button" onclick="payment()">
 				Оплатить
 	        </button>
@@ -259,6 +263,10 @@
                     }
                 }
                 mailru.app.utils.scrollTo(pos);
+            }
+            
+            function install(){
+                mailru.app.users.requireInstallation(['stream']);
             }
         </script>  
     </body>
