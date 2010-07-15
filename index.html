@@ -154,6 +154,9 @@
 	                mailru.events.listen(mailru.app.events.upload, function(d){
 	                    cl(collectData(d))
 	                });
+	                mailru.events.listen(mailru.app.events.createAlbum, function(d){
+	                    cl(collectData(d))
+	                });
 	                mailru.events.listen(mailru.app.events.readHash, function(d){
 	                    cl(collectData(d))
 	                });
