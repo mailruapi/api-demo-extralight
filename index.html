@@ -160,6 +160,9 @@
 	                mailru.events.listen(mailru.app.events.readHash, function(d){
 	                    cl(collectData(d))
 	                });
+					mailru.events.listen(mailru.app.events.applicationInstallation, function(d){
+	                    cl(collectData(d))
+	                });
 	            });
 
             function collectData(d){
