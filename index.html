@@ -113,6 +113,9 @@
 					//проверяем, установлено ли приложение у пользователя
 	                if(mailru.session.is_app_user != 1){
 	                    sandbox.style.display = 'none';
+						mailru.events.listen(mailru.app.events.applicationInstallation, function(d){
+		                    cl(collectData(d))
+		                });
 	                    mailru.app.users.requireInstallation(['widget']);
 						return false;
 	                }	
@@ -160,9 +163,7 @@
 	                mailru.events.listen(mailru.app.events.readHash, function(d){
 	                    cl(collectData(d))
 	                });
-					mailru.events.listen(mailru.app.events.applicationInstallation, function(d){
-	                    cl(collectData(d))
-	                });
+					
 	            });
 
             function collectData(d){
