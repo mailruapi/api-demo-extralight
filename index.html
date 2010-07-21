@@ -154,7 +154,7 @@
 	                mailru.events.listen(mailru.app.events.permissionDialogStatus, function(d){
 	                    cl(collectData(d))
 	                });
-	                mailru.events.listen(mailru.app.events.upload, function(d){
+	                mailru.events.listen(mailru.common.events.upload, function(d){
 	                    cl(collectData(d))
 	                });
 	                mailru.events.listen(mailru.app.events.createAlbum, function(d){
