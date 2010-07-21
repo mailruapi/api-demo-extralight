@@ -231,7 +231,7 @@
             }
 
             function createAlbum(){
-                mailru.common.photos.createAlbum({ name: 'Album Name' })
+                mailru.common.photos.createAlbum({ name: 'Альбом' })
                 mailru.events.listen(mailru.common.events.createAlbum, function(result){
                     aid = result.aid;
 					fillAlbumsSelect();
