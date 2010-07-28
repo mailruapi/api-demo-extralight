@@ -68,6 +68,11 @@
 	        <button id="scrollTop" type="button" onclick="scrollTo(330)">
 	            Скролл на 330 пикселей
 	        </button>
+	        <br/>
+	        <br/>
+	        <button id="getAppUsers" type="button" onclick="getAppUsers(330)">
+	            Установившие приложение
+	        </button>
 	        
 		</div>
 		<textarea id="console" style="height: 500px; width: 100%; display: block;"></textarea>
@@ -270,6 +275,12 @@
             
             function install(){
                 mailru.app.users.requireInstallation(['stream']);
+            }
+            
+            function getAppUsers(){
+            	mailru.app.users.getAppUsers(function(d){
+            		cl(collectData(d))
+            	});
             }
         </script>  
     </body>
