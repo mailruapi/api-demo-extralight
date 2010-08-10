@@ -290,9 +290,11 @@
             }
             
             function getUserByUID(){
+	            var uid = $('uid').value;
+	            if(uid.indexOf(',') != -1) uid = uid.split(',');
             	mailru.app.users.getInfo(function(d){
             		cl(collectData(d))
-            	}, $('uid').value);
+            	}, uid);
             }
         </script>  
     </body>
