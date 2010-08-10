@@ -73,7 +73,13 @@
 	        <button id="getAppUsers" type="button" onclick="getAppUsers(330)">
 	            Установившие приложение
 	        </button>
-	        
+   	        <br/>
+	        <br/>
+	        <input type="text" id="uid" />
+	        <button id="getUserByUID" type="button" onclick="getUserByUID()">
+	            получить инфо о UID
+	        </button>
+
 		</div>
 		<textarea id="console" style="height: 500px; width: 100%; display: block;"></textarea>
 		<script src="http://cdn.connect.mail.ru/js/loader.js" type="text/javascript" charset="utf-8"></script>
@@ -281,6 +287,12 @@
             	mailru.app.friends.getAppUsers(function(d){
             		cl(collectData(d))
             	});
+            }
+            
+            function getUserByUID(){
+            	mailru.app.users.getInfo(function(d){
+            		cl(collectData(d))
+            	}, $('uid').value);
             }
         </script>  
     </body>
