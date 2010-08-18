@@ -14,6 +14,13 @@
 	        <button id="payment" type="button" onclick="payment()">
 				Оплатить
 	        </button>
+	        <button id="payment_sms" type="button" onclick="payment_sms()">
+				Оплатить sms
+	        </button>
+	        <button id="payment_other" type="button" onclick="payment_other()">
+				Оплатить не sms
+	        </button>
+                <br/><br/>
 	        <button id="inviteFrineds" type="button" onclick="invite()">
 	            Пригласить друзей
 	        </button>
@@ -197,6 +204,16 @@
 
 
 });
+                return false;
+            }
+
+            function payment_sms(){
+                mailru.app.payments.showDialog({service_id: 2, service_name: "ви'лы sms", sms_price: 3});
+                return false;
+            }
+
+            function payment_other(){
+                mailru.app.payments.showDialog({service_id: 3, service_name: "ви'лы не sms", other_price: 31337});
                 return false;
             }
 
