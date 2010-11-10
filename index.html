@@ -89,7 +89,7 @@
 			<h2>
 				REST-методы
 			</h2>
-			<button id="guestbook-get" type="button" onclick="guestbook-get()">
+			<button id="guestbook-get" type="button" onclick="guestbookGet()">
 				guestbook.get
 	        </button>	
 		</div>
@@ -318,7 +318,7 @@
             		cl(collectData(d))
             	}, uid);
             }
-			function getUserByUID(){
+			function guestbookGet(){
 //	            var uid = $('uid').value;
 //	            if(uid.indexOf(',') != -1) uid = uid.split(',');
             	mailru.app.guestbook.get(function(d){
