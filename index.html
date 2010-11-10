@@ -86,7 +86,12 @@
 	        <button id="getUserByUID" type="button" onclick="getUserByUID()">
 	            получить инфо о UID
 	        </button>
-
+			<h2>
+				REST-методы
+			</h2>
+			<button id="guestbook-get" type="button" onclick="guestbook-get()">
+				guestbook.get
+	        </button>	
 		</div>
 		<textarea id="console" style="height: 500px; width: 100%; display: block;"></textarea>
 		<script src="http://cdn.connect.mail.ru/js/loader.js?new=1" type="text/javascript" charset="utf-8"></script>
@@ -313,6 +318,14 @@
             		cl(collectData(d))
             	}, uid);
             }
+			function getUserByUID(){
+//	            var uid = $('uid').value;
+//	            if(uid.indexOf(',') != -1) uid = uid.split(',');
+            	mailru.app.guestbook.get(function(d){
+            		cl(collectData(d))
+            	}, mailru.session.vid);
+            }
+			
         </script>  
     </body>
 </html>
