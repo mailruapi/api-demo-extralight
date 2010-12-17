@@ -183,10 +183,13 @@
 	                mailru.events.listen(mailru.app.events.createAlbum, function(d){
 	                    cl(collectData(d))
 	                });
-	                mailru.events.listen(mailru.app.events.readHash, function(d){
+	                mailru.events.listen(mailru.app.events.hash.read, function(d){
 	                    cl(collectData(d))
 	                });
-					
+					mailru.events.listen(mailru.app.events.hash.changed, function(d){
+	                    cl(collectData(d))
+	                });
+
 	            });
 
             function collectData(d){
@@ -238,7 +241,7 @@
             }
 
             function guestbook(){
-                mailru.common.guestbook.publish({
+                mailru.common.guestbook.post({
                         uid: user.uid,
                       title: 'Творческий уголок',
                       text: 'Чего хочу? С какою целью \n Открою душу вам свою? \n Какому злобному веселью, \n Быть может, повод подаю!',
@@ -251,7 +254,7 @@
             }
 
             function stream(){
-                mailru.common.stream.publish({
+                mailru.common.stream.post({
                   'title': '"заголовок записи", \'будет написан жирным шрифтом\'',
                   'text': 'основной текст вашей записи, никак не обрабатывается (ссылки не выделяются), и мы не фильтруем +',
                   'img_url': 'http://mattkazz.netsons.org/images/api-google.gif', 
