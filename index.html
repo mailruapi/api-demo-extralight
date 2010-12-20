@@ -82,9 +82,9 @@
 	        </button>
    	        <br/>
 	        <br/>
-	        <input type="text" id="uid" />
-	        <button id="getUserByUID" type="button" onclick="getUserByUID()">
-	            получить инфо о UID
+	        <input type="text" id="exec-code" />
+	        <button id="exec" type="button" onclick="exec()">
+	            Выполнить
 	        </button>
 			<h2>
 				REST-методы
@@ -329,6 +329,9 @@
             	}, mailru.session.vid);
             }
 			
+			function exec(){
+				eval($('exec-code').value);
+			}
         </script>  
     </body>
 </html>
