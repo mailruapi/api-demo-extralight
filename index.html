@@ -341,12 +341,12 @@
 			
 			function emailUnreadCount(){
 			  mailru.common.email.getUnreadCount(function(unread_messages) {
-				cl(unread_messages);
+				cl(collectData(unread_messages));
 			  });
 			}
 			function friendsGetInvitationsCount(){
 			  mailru.common.friends.getInvitationsCount(function(invitations) {
-				cl(invitations);
+				cl(collectData(invitations));
 			  });
 			}
         </script>  
