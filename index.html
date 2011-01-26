@@ -20,10 +20,14 @@
 	        <button id="payment_other" type="button" onclick="payment_other()">
 				Оплатить не sms
 	        </button>
-                <br/><br/>
+			<br/><br/>
 	        <button id="inviteFrineds" type="button" onclick="invite()">
 	            Пригласить друзей
 	        </button>
+			<button id="addFriend" type="button" onclick="addFriend()">
+	            Подружиться
+	        </button>
+			<br/><br/>
 			<button id="reviewApp" type="button" onclick="review()">
 	            Написать отзыв
 	        </button>
@@ -195,6 +199,9 @@
 					mailru.events.listen(mailru.app.events.hash.changed, function(d){
 	                    cl(collectData(d))
 	                });
+	                mailru.events.listen(mailru.app.events.friends.add, function(d){
+	                    cl(collectData(d))
+	                });
 
 	            });
 
@@ -348,6 +355,10 @@
 			  mailru.common.friends.getInvitationsCount(function(invitations) {
 				cl(collectData(invitations));
 			  });
+			}
+			
+			function addFriend(){
+				mailru.app.friend.add('15984764615407557866');
 			}
         </script>  
     </body>
