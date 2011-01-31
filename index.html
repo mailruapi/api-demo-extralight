@@ -198,7 +198,7 @@
 	                mailru.events.listen(mailru.app.events.hash.read, function(d){
 	                    cl(collectData(d))
 	                });
-					mailru.events.listen(mailru.app.events.hash.changed, function(d){
+					mailru.events.listen(mailru.app.events.readHash, function(d){
 	                    cl(collectData(d))
 	                });
 	                mailru.events.listen(mailru.app.events.friends.add, function(d){
@@ -355,7 +355,7 @@
 			}
 			function friendsGetInvitationsCount(){
 			  mailru.common.friends.getInvitationsCount(function(invitations) {
-				cl(collectData(invitations));
+				alert(invitations.count);
 			  });
 			}
 			
