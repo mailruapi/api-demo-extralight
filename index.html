@@ -108,6 +108,10 @@
 		<script src="http://cdn.connect.mail.ru/js/loader.js?new=1" type="text/javascript" charset="utf-8"></script>
 
         <script type="text/javascript" charset="utf-8">
+        	if(document.URL.indexOf('__branch') != -1 && /*@cc_on!@*/false){
+        		alert('loaded');
+        	}
+        	
             if(typeof window.console === 'undefined'){
                 window.console = {
                     log: function(d){
