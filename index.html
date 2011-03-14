@@ -104,12 +104,20 @@
 	        </button>
 		</div>
 		<textarea id="console" style="height: 500px; width: 100%; display: block;"></textarea>
-
+		<!--
 		<script src="http://cdn.connect.mail.ru/js/loader.js?new=1" type="text/javascript" charset="utf-8"></script>
+		-->
+		<script>
+			if(document.URL.indexOf('__branch') != -1){
+				document.write('<script src="http://api-xdm.my.rapira9.mail.ru/mail/ru/images/js/connect/loader.js"></script>');
+        	} else {
+				document.write('<script src="http://cdn.connect.mail.ru/js/loader.js"></script>');
+        	}
 
+		</script>
         <script type="text/javascript" charset="utf-8">
         	if(document.URL.indexOf('__branch') != -1 && /*@cc_on!@*/false){
-        		alert('loaded');
+
         	}
         	
             if(typeof window.console === 'undefined'){
@@ -263,7 +271,8 @@
                         uid: user.uid,
                       title: 'Творческий уголок',
                       text: 'Чего хочу? С какою целью \n Открою душу вам свою? \n Какому злобному веселью, \n Быть может, повод подаю!',
-                      img_url: 'http://bitman.me/mailru/demo/img/stream_pic.jpeg',
+/*                      img_url: 'http://bitman.me/mailru/demo/img/stream_pic.jpeg', */
+					  img_url: 'http://cdn.zaluskiy.com/cards/4032_480.jpg',
                       action_links: [
                           {'text': 'Запостил UID', 'href': 'uid=' + user.uid}
                         ]
