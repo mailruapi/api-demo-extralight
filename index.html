@@ -164,6 +164,10 @@
 				
 					//получаем информацию о пользователе и сохраняем в глобаленой переменной user
 	                mailru.app.users.getInfo(function(result){
+						if(result.error) {
+							user = {};
+							return false;
+						}
 	                    user = result[0];
 						fillAlbumsSelect();
 	                });	                
