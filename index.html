@@ -86,6 +86,13 @@
 	        </button>
    	        <br/>
 	        <br/>
+					<button id="setTitle" type="button" onclick="setTitle()">
+	             Установить Title страницы
+	        </button>
+	        <input id="setTitleInput" />
+	        <br/>
+	        <br/>
+					
 	        <input type="text" id="exec-code" />
 	        <button id="exec" type="button" onclick="exec()">
 	            Выполнить
@@ -377,6 +384,11 @@
 			function addFriend(){
 				mailru.app.friends.add('15984764615407557866');
 			}
+			
+			function setTitle(){
+          mailru.app.utils.setTitle(document.getElementById('setTitleInput').value);
+          return false;
+      }
         </script>  
     </body>
 </html>
